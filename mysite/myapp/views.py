@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.contrib import messages
 from .models import Curso
 
 # Create your views here.
@@ -24,19 +25,15 @@ def eliminarCurso(request, codigo):
 
 def edicionCurso(request, codigo):
     curso = Curso.objects.get(codigo=codigo)
-
-    return render(request, "edicionCurso.html", {"curso":curso})
+    return render(request, "edicionCurso.html", {"curso": curso})
 
 def editarCurso(request):
-    nombre=request.POST['txtNombre2']
-    codigo=request.POST['txtCodigo2']
-    
-    cursoo = Curso.objects.get(codigo=codigo)
-    
-    cursoo.nombre = nombre
-    cursoo.codigo = codigo
-    
-    cursoo.save
+    nombre2=request.POST['txtNombre2']
+    codigo2=request.POST['txtCodigo2']
+
+    curso = Curso.objects.get(codigo=codigo2)
+    curso.delete()
+    curso=Curso.objects.create(codigo= codigo2, nombre= nombre2)
 
     return redirect('/')
 
