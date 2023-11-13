@@ -1,0 +1,28 @@
+{% extends "./base.html" %}
+{% block title %}Edicion Estudiante{% endblock title %}
+{% block body %}
+
+<div class="row">
+    <div class="col-md-4 offset-md-4">
+        <h2>Editar de Estudiante</h2>
+            <div class = "card">
+                <div class = "card-body">
+                    <form action="/editarEstudiante/" method="POST"> {% csrf_token %}
+                        <div class="form-group">
+                            <input type="text" id="txtNombre3" name="txtNombre3" class="form-control" value="{{estudiante.nombre}}" placeholder="Nombre" maxlength="5" required>
+                        </div>
+                        <div class= "form-group">
+                            <input type="text" id="txtApellido3" name="txtApellido3" class="form-control" value="{{estudiante.apellido}}" placeholder="Apellido" maxlength="40" required>
+                        </div>
+                        <div class= "form-group">
+                            <input type="text" id="txtEmail3" name="txtEmail3" class="form-control" value="{{estudiante.email}}" placeholder="Email" maxlength="40" readonly required>
+                        </div>
+                        <div class= "form-group">
+                            <button type="submit" class="btn btn-success btn-block text-white">Guardar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+    </div>
+</div>
+{% endblock %}
